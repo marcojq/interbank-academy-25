@@ -1,66 +1,48 @@
 # Reto Técnico: Procesamiento de Transacciones Bancarias (CLI)
 
-## Objetivo:
+## Introducción:
 
-Desarrolla una aplicación de línea de comandos (CLI) que procese un archivo CSV con transacciones bancarias y genere un reporte que incluya:
+Este reto técnico consiste en procesar un archivo CSV que contiene información de transacciones bancarias y mostrar un reporte con los siguientes datos:
+- balance final
+- ID y transacción de mayor monto
+- Número total de transacciones por tipo de transacción, débito o crédito.
 
-- **Balance Final:**  
-  Suma de los montos de las transacciones de tipo "Crédito" menos la suma de los montos de las transacciones de tipo "Débito".
+## Instrucciones de ejecución:
 
-- **Transacción de Mayor Monto:**  
-  Identificar el ID y el monto de la transacción con el valor más alto.
+Ejecutar el programa con Python y pasar como argumento el archivo que contiene la información de transacciones.
 
-- **Conteo de Transacciones:**  
-  Número total de transacciones para cada tipo ("Crédito" y "Débito").
+- En Windows: python reporte_transacciones.py data.csv
+- En Linux: python3 reporte_transacciones.py data.csv
 
----
+## Enfoque y solución:
 
-## Instrucciones
+La solución ha sido desarrollada usando el lenguaje de programación Python.
 
-1. **Repositorio Base:**  
-   Clona o haz un fork del repositorio base disponible en:  
-   `https://github.com/codeableorg/interbank-academy-25`
+1. **Lógica de implementación**
 
-2. **Entrada de Datos:**  
-   La aplicación deberá leer un archivo CSV. Ejemplo de contenido:
+   La lógica de implementación consiste en leer y extraer la información del archivo csv. Luego se decidió trabajar con centavos para el procesamiento de los montos de las transacciones con el fin de evitar errores de precisión con los decimales. Finalmente se muestran los resultados requeridos convertidos en formato moneda, dinero real.
 
-   ```
-   id,tipo,monto
-   1,Crédito,100.00
-   2,Débito,50.00
-   3,Crédito,200.00
-   4,Débito,75.00
-   5,Crédito,150.00
-   ```
 
-3. **Salida del Programa:**  
-   La aplicación debe mostrar el reporte final en la terminal.  
-   Ejemplo de salida:
+   El procesamiento consiste en leer fila por fila el contenido del archivo csv y extraer por cada fila el id, tipo y monto de cada transacción. En cada lectura se extrae información y se van realizando operaciones con cada valor extraído:
+   - Se van sumando los montos según el tipo de transacción y se va contabilizando si la transacción fue "Crédito" o "Débito". 
+   - Se va comparando cada monto con el monto de la fila o transacción anterior para encontrar el monto mayor de todas las transacciones.
+   
+2. **Decisiones de diseño**
 
-   ```
-   Reporte de Transacciones
-   ---------------------------------------------
-   Balance Final: 325.00
-   Transacción de Mayor Monto: ID 3 - 200.00
-   Conteo de Transacciones: Crédito: 3 Débito: 2
-   ```
+   - Se eligió trabajar en centavos haciendo conversiones para mejorar la precisión del resultado de balance final.
+   - Se decidió pasar el archivo csv como argumento para mayor flexibilidad durante la ejecución en la terminal.
+   - Se organizó el código en funciones para una mayor legibilidad.
 
-4. **Lenguaje de Programación:**  
-   Utiliza el lenguaje de tu preferencia. Opciones recomendadas:
+## Estructura del proyecto
 
-   - Python
-   - Java
-   - C#
-   - JavaScript (Node.js)
+La estructura es la siguiente:
 
-5. **README del Proyecto:**  
-   Incluye un archivo `README.md` con la siguiente estructura:
+interbank-academy-25/
+│
+├── data.csv
+├── reporte_transacciones.py
+└── README.md
 
-   - **Introducción:** Breve descripción del reto y su propósito.
-   - **Instrucciones de Ejecución:** Cómo instalar dependencias y ejecutar la aplicación.
-   - **Enfoque y Solución:** Lógica implementada y decisiones de diseño.
-   - **Estructura del Proyecto:** Archivos y carpetas principales.
+El archivo principal es reporte_transacciones.py que contiene toda la implementación del proyecto.
+Es necesario pasar como argumento el archivo csv que contiene la información de las transacciones.
 
-6. **Documentación y Calidad del Código:**
-   - Código bien documentado y fácil de leer.
-   - Comentarios explicando pasos clave y lógica del programa.
