@@ -35,14 +35,7 @@ La solución ha sido desarrollada usando el lenguaje de programación Python.
 
 ## Estructura del proyecto
 
-La estructura es la siguiente:
-
-interbank-academy-25/
-│
-├── data.csv
-├── reporte_transacciones.py
-└── README.md
-
 El archivo principal es reporte_transacciones.py que contiene toda la implementación del proyecto.
+
 Es necesario pasar como argumento el archivo csv que contiene la información de las transacciones.
 
